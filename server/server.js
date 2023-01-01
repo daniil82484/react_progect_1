@@ -1,31 +1,22 @@
 const express = require('express')
 const app = express()
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
-let conn = mysql.createConnection({
+const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
     database: "bd_project"
 });
 
-function list() {
-    const query = `SELECT * FROM users`;
-    conn.query(query, (err, result) => {
-        console.log(result);
-    });
-}
-list();
 
-
-
-
-
-
+const query = `SELECT * FROM users`;
+conn.query(query, (err, result) => {
+    //console.log(result);
 
 app.get("/api", (req, res) => {
-    res.json({"users": ["1", "2", "3"]})
+    res.json({"users": result})
 })
-
+});
 app.listen(5000, () => {console.log("Server 5000")})

@@ -1,0 +1,9 @@
+h2{
+    font-size: 60px;
+}
+
+.link{
+    list-style: none;
+    text-decoration: none;
+    color: wheat;
+}

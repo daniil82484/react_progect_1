@@ -7,21 +7,20 @@ const PostList = (list) => {
     const [posts, srtPosts] = useState([]);
 
     useEffect(() => {
-        fetch("/api").then(
-            response => response.json()
-        ).then(
-            data => {
-                srtPosts(data)
-            }
-        )
+        fetch("/api/accounts").then(
+            response => response.json())
+            .then(
+                data => {
+                    srtPosts(data)
+                })
     }, [])
 
     return (
         <div className={"d-flex flex-column gap-5"}>
-            {(typeof posts.users === 'undefined') ? (
+            {(typeof posts.accounts === 'undefined') ? (
                 <p>...</p>
             ): (
-                posts.users.map(post =>
+                posts.accounts.map(post =>
                     <PostItem post={post} key={post.id}/>
                 )
             )}

@@ -11,12 +11,34 @@ const conn = mysql.createConnection({
 });
 
 
-const query = `SELECT * FROM users`;
+let query = "SELECT * FROM users";
 conn.query(query, (err, result) => {
-    //console.log(result);
-
-app.get("/api", (req, res) => {
-    res.json({"users": result})
-})
+    app.get("/api", (req, res) => {
+        res.json({"users": result})
+    })
 });
+
+
+let query2 = "SELECT * FROM accounts";
+conn.query(query2, (err, result) => {
+    app.get("/api/accounts", (req, res) => {
+        res.json({"accounts": result})
+    })
+});
+
+
+
+
 app.listen(5000, () => {console.log("Server 5000")})
+
+
+//function tb_query(tb_name) {
+//    const query = "SELECT * FROM " + tb_name;
+//    conn.query(query, (err, result) => {
+//        //console.log(result);
+//        app.get("/api", (req, res) => {
+//
+//            res.json({"tb_query": result})
+//        })
+//    });
+//}
